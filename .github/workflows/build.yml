@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Helm Lint
-        run: helm lint
+        run: helm lint charts/sample1
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -47,7 +47,7 @@ jobs:
           repository : mohan-13/helm-charts
           ref: gh-pages
       - name: Copy Helm Archive
-        run: cp ../sample-helm-chart/charts/sample1/*.tgz .
+        run: ls -al ../
       - name: Helm Index
         run: helm repo index --url https://mohan-13.github.io/helm-charts/  .
       - run: |

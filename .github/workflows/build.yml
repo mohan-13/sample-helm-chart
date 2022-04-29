@@ -35,22 +35,37 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          path: sample-helm-chart
+
       - name: Helm Lint
-        run: helm lint charts/sample1
+        working-directory: sample-helm-chart/charts/sample1
+        run: helm lint .
+
       - name: Helm Package
-        run: helm package charts/sample1
+        working-directory: sample-helm-chart/charts/sample1
+        run: helm package .
 
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          path: helm-charts
           persist-credentials: false
           repository : mohan-13/helm-charts
           ref: gh-pages
       - name: Copy Helm Archive
-        run: ls -al ../
+        run: cp sample-helm-chart/charts/sample1/*.tgz helm-charts/
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "helm-charts/sample1-0.1.4.tgz"
+          token: ${{ secrets.PAT }}
+          repo: mohan-13/helm-charts
+          tag: openmrs-1
       - name: Helm Index
-        run: helm repo index --url https://mohan-13.github.io/helm-charts/  .
-      - run: |
+        run: helm repo index --merge helm-charts/index.yaml --url https://mohan-13.github.io/helm-charts/  helm-charts/
+      - name: Commit and Push Chart
+        working-directory: helm-charts/
+        run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .

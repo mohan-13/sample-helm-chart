@@ -36,4 +36,4 @@ jobs:
           git checkout gh-pages
           git add .
           git commit -m "generated"
-          git push
+          git push https://${{ secrets.PAT}}@github.com/:mohan-13/:helm-charts.git

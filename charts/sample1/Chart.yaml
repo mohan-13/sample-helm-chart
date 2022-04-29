@@ -1,6 +1,6 @@
 apiVersion: v2
 name: sample1
-description: A Helm chart for Kubernetes
+description: My Sample Helm Chart
 
 # A chart can be either an 'application' or a 'library' chart.
 #

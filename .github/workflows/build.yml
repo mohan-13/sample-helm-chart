@@ -27,6 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          persist-credentials: false
           repository : mohan-13/helm-charts
           ref: gh-pages
       - run: |

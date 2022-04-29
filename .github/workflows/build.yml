@@ -7,13 +7,15 @@ on:
 
 jobs:
   release:
+    name: Chart Releaser
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
+      - name: Helm Lint
+        run: helm lint
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -23,6 +25,20 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.8.1
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.4.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  manual-release:
+    name: Manual Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Helm Lint
+        run: helm lint charts/sample1
+      - name: Helm Package
+        run: helm package charts/sample1
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,11 +46,13 @@ jobs:
           persist-credentials: false
           repository : mohan-13/helm-charts
           ref: gh-pages
+      - name: Copy Helm Archive
+        run: cp ../sample-helm-chart/charts/sample1/*.tgz .
+      - name: Helm Index
+        run: helm repo index --url https://mohan-13.github.io/helm-charts/  .
       - run: |
-          date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout gh-pages
           git add .
           git commit -m "generated"
           git push https://mohan-13:${{ secrets.PAT}}@github.com/mohan-13/helm-charts.git gh-pages

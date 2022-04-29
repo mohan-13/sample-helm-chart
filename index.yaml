@@ -3,6 +3,16 @@ entries:
   sample1:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-04-29T07:35:13.550099479Z"
+    description: My Sample Helm Chart
+    digest: 2d9785d640a5fa72f1131bf079b4a07d9ec6ec189849386d61b786a8f04f55fa
+    name: sample1
+    type: application
+    urls:
+    - https://github.com/mohan-13/sample-helm-chart/releases/download/sample1-0.1.2/sample1-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-04-29T07:17:40.208457547Z"
     description: My Sample Helm Chart
     digest: 1ef8889e1d26e4ed63f70633a61d9cdf5a83e98fa3617b00e2858d710e0cdc9d
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/mohan-13/sample-helm-chart/releases/download/sample1-0.1.1/sample1-0.1.1.tgz
     version: 0.1.1
-generated: "2022-04-29T07:17:40.208461447Z"
+generated: "2022-04-29T07:35:13.550114779Z"

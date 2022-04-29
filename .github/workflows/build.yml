@@ -24,9 +24,16 @@ jobs:
         with:
           version: v3.8.1
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          charts_repo_url: https://mohan-13.github.io/helm-charts
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          repository : mohan-13/helm-charts
+          ref: gh-pages
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout gh-pages
+          git add .
+          git commit -m "generated"
+          git push

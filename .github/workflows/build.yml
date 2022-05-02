@@ -6,32 +6,12 @@ on:
       - master
 
 jobs:
-  release:
-    name: Chart Releaser
+  helm-build-publish:
+    name: Helm Build and Publish
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Helm Lint
-        run: helm lint charts/sample1
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.8.1
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  manual-release:
-    name: Manual Release
-    runs-on: ubuntu-latest
+    env:
+      HELM_CHART_PATH: sample-helm-chart/package/helm/openmrs
+      BAHMNI_VERSION: 0.94
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,28 +19,22 @@ jobs:
           path: sample-helm-chart
 
       - name: Helm Lint
-        working-directory: sample-helm-chart/charts/sample1
-        run: helm lint .
+        run: helm lint $HELM_CHART_PATH
 
       - name: Helm Package
-        working-directory: sample-helm-chart/charts/sample1
-        run: helm package .
+        run: helm package $HELM_CHART_PATH --version ${{env.BAHMNI_VERSION}}-${{github.run_number}}
 
-      - name: Checkout
+      - name: Checkout Charts Repository
         uses: actions/checkout@v2
         with:
-          path: helm-charts
-          persist-credentials: false
           repository : mohan-13/helm-charts
           ref: gh-pages
+          path: helm-charts
+          persist-credentials: false
+
       - name: Copy Helm Archive
-        run: cp sample-helm-chart/charts/sample1/*.tgz helm-charts/
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: "helm-charts/sample1-0.1.4.tgz"
-          token: ${{ secrets.PAT }}
-          repo: mohan-13/helm-charts
-          tag: openmrs-1
+        run: cp openmrs-*.tgz helm-charts/openmrs/
+
       - name: Helm Index
         run: helm repo index --merge helm-charts/index.yaml --url https://mohan-13.github.io/helm-charts/  helm-charts/
       - name: Commit and Push Chart

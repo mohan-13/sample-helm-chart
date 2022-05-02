@@ -22,7 +22,7 @@ jobs:
         run: helm lint $HELM_CHART_PATH
 
       - name: Helm Package
-        run: helm package $HELM_CHART_PATH --version ${{env.BAHMNI_VERSION}}-${{github.run_number}}
+        run: helm package $HELM_CHART_PATH --version 1.0.0-${{github.run_number}}
 
       - name: Checkout Charts Repository
         uses: actions/checkout@v2

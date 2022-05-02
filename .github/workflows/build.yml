@@ -18,6 +18,8 @@ jobs:
         with:
           path: sample-helm-chart
 
+      - name: Update image tag
+        run: yq --inplace '.image.tag = "${{env.BAHMNI_VERSION}}-${{github.run_number}}"' $HELM_CHART_PATH/values.yaml
       - name: Helm Lint
         run: helm lint $HELM_CHART_PATH
 

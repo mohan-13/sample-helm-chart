@@ -54,7 +54,7 @@ jobs:
           cd sample-helm-chart
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add $HELM_CHART_PATH/values.yaml
+          git add package/helm/openmrs/values.yaml
           git commit -m "generated"
           git push origin master
 

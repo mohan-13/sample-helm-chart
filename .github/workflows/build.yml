@@ -49,6 +49,14 @@ jobs:
 
       - name: Helm Package
         run: helm package $HELM_CHART_PATH --version 1.0.0-${{env.BAHMNI_VERSION}}-${{github.run_number}}
+      - name: Git commit
+        run: |
+          cd sample-helm-chart
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add $HELM_CHART_PATH/values.yaml
+          git commit -m "generated"
+          git push origin master
 
       - name: Checkout Charts Repository
         uses: actions/checkout@v2

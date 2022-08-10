@@ -13,10 +13,13 @@ on:
           - demo
 jobs:
   setup:
+    strategy:
+      matrix:
+        nodegroup: [{ name: 'nonprod',minSize: "1",maxSize: "2",desiredSize: "2" }, { name: 'performance',minSize: "1",maxSize: "1",desiredSize: "1" }]
     name: DB Setup for ${{ github.event.inputs.environment || 'dev' }} environment
     runs-on: ubuntu-latest
     env:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
       - name: Provision ${{ env.CLUSTER_NAME }} node group
-        run: echo $CLUSTER_NAME
+        run: echo minSize=${{ matrix.nodegroup.minSize }},maxSize=${{ matrix.nodegroup.maxSize }},desiredSize=${{ matrix.nodegroup.desiredSize }}

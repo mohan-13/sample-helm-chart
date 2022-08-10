@@ -15,7 +15,10 @@ jobs:
   setup:
     strategy:
       matrix:
-        nodegroup: [{ name: 'nonprod',minSize: "1",maxSize: "2",desiredSize: "2" }, { name: 'performance',minSize: "1",maxSize: "1",desiredSize: "1" }]
+        nodegroup: [
+          { name: 'nonprod',minSize=1,maxSize=2,desiredSize=2 },
+          { name: 'performance',minSize=1,maxSize=1,desiredSize=1 }
+        ]
     name: DB Setup for ${{ github.event.inputs.environment || 'dev' }} environment
     runs-on: ubuntu-latest
     env:

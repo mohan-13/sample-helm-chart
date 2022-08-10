@@ -25,4 +25,4 @@ jobs:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
       - name: Provision ${{ env.CLUSTER_NAME }} node group
-        run: echo minSize=${{ matrix.nodegroup.minSize }},maxSize=${{ matrix.nodegroup.maxSize }},desiredSize=${{ matrix.nodegroup.desiredSize }}
+        run: echo ${{ matrix.nodegroup.name }} minSize=${{ matrix.nodegroup.minSize }},maxSize=${{ matrix.nodegroup.maxSize }},desiredSize=${{ matrix.nodegroup.desiredSize }}

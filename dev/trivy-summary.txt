@@ -1,0 +1,36 @@
+
+Summary Report for arn:aws:eks:ap-south-1:863324974761:cluster/bahmni-cluster-nonprod
+┌───────────┬───────────────────────────────────┬────────────────────────────┬────────────────────┬───────────────────┐
+│ Namespace │             Resource              │      Vulnerabilities       │ Misconfigurations  │      Secrets      │
+│           │                                   ├─────┬─────┬─────┬─────┬────┼───┬───┬───┬────┬───┼───┬───┬───┬───┬───┤
+│           │                                   │  C  │  H  │  M  │  L  │ U  │ C │ H │ M │ L  │ U │ C │ H │ M │ L │ U │
+├───────────┼───────────────────────────────────┼─────┼─────┼─────┼─────┼────┼───┼───┼───┼────┼───┼───┼───┼───┼───┼───┤
+│ dev       │ Deployment/abdm-callback-proxy    │ 12  │ 270 │ 45  │ 221 │    │   │   │ 3 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/bahmni-web             │     │     │     │     │ 1  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/patient-documents      │ 16  │ 283 │ 57  │ 225 │    │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ StatefulSet/bahmni-dev-postgresql │ 33  │ 90  │ 60  │ 251 │ 1  │   │   │ 4 │ 19 │   │   │   │   │   │   │
+│ dev       │ Deployment/appointments           │     │     │     │     │ 1  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/hip                    │ 29  │ 141 │ 59  │ 117 │    │   │ 3 │ 6 │ 21 │   │   │   │   │   │   │
+│ dev       │ Deployment/hiu                    │ 11  │ 45  │ 46  │ 4   │ 3  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/bahmni-lab             │     │     │     │     │ 1  │   │   │ 2 │ 10 │   │   │ 1 │   │   │   │
+│ dev       │ Deployment/openmrs                │ 102 │ 419 │ 320 │ 343 │ 17 │   │ 1 │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/crater-php             │ 36  │ 334 │ 198 │ 482 │    │   │ 2 │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/hip-atomfeed           │ 43  │ 67  │ 66  │ 35  │ 6  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/hiu-ui                 │  6  │ 43  │ 17  │ 3   │    │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ StatefulSet/bahmni-dev-rabbitmq   │ 21  │ 48  │ 31  │ 135 │ 1  │   │ 1 │ 1 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/crater-nginx           │  4  │ 34  │ 16  │ 2   │    │   │   │ 3 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/reports                │ 47  │ 73  │ 64  │ 108 │ 3  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/hiu-db                 │ 27  │ 29  │ 40  │ 34  │ 3  │   │   │ 2 │ 10 │   │   │   │   │   │   │
+│ dev       │ Deployment/otp-service            │ 23  │ 121 │ 51  │ 117 │    │   │   │ 2 │ 10 │   │   │   │   │   │   │
+└───────────┴───────────────────────────────────┴─────┴─────┴─────┴─────┴────┴───┴───┴───┴────┴───┴───┴───┴───┴───┴───┘
+Severities: C=CRITICAL H=HIGH M=MEDIUM L=LOW U=UNKNOWN
+
+
+Summary Report for arn:aws:eks:ap-south-1:863324974761:cluster/bahmni-cluster-nonprod
+┌───────────┬──────────┬───────────────────┐
+│ Namespace │ Resource │  RBAC Assessment  │
+│           │          ├───┬───┬───┬───┬───┤
+│           │          │ C │ H │ M │ L │ U │
+└───────────┴──────────┴───┴───┴───┴───┴───┘
+Severities: C=CRITICAL H=HIGH M=MEDIUM L=LOW U=UNKNOWN
+

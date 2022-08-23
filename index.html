@@ -5,7 +5,7 @@
     <ul>
        {% for doc in site.static_files %}
       
-                <li><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc }}</a></li>
+                <li><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.path }}</a></li>
          
         {% endfor %}
     </ul>

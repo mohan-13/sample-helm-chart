@@ -3,9 +3,9 @@
 <h1>Index of ./</h1>
 {% assign doclist = site.static_files | sort: 'url'  %}
     <ul>
-       {% for doc in doclist %}
+       {% for doc in site.static_files %}
       
-                <li><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.url }}</a></li>
+                <li><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc }}</a></li>
          
         {% endfor %}
     </ul>

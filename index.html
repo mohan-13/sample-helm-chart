@@ -1,7 +1,7 @@
 ---
 ---
 <h1>Index of ./</h1>
-{% assign doclist = site.pages | sort: 'url'  %}
+{% assign doclist = site.static_files | sort: 'url'  %}
     <ul>
        {% for doc in doclist %}
       
@@ -9,5 +9,3 @@
          
         {% endfor %}
     </ul>
-{{ site.pages }}
-{{ site.static_files }}

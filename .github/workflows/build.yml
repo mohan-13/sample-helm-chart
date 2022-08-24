@@ -19,4 +19,9 @@ jobs:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          touch sample.txt
+          git add .
+          git commit -m "Actions COmmit"
+          git push
       - run: ls -al

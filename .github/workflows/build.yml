@@ -19,6 +19,9 @@ jobs:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
       - uses: actions/checkout@v2
+      - uses: mohan-13/versioning-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           echo "Sample-12" > sample.txt
           git config user.name 'github-actions[bot]'
@@ -27,3 +30,4 @@ jobs:
           git commit -m "Actions Cmmit"
           git push
       - run: ls -al
+      

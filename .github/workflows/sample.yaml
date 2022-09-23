@@ -1,0 +1,18 @@
+name: Sample
+on:
+  push:
+    branches:
+      - master
+      - 'release-*'
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  setup:
+    name: DB Setup for ${{ github.event.inputs.environment || 'dev' }} environment
+    runs-on: ubuntu-latest
+    env:
+      CLUSTER_NAME: bahmni-cluster-dev
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo $GITHUB_REF
+      

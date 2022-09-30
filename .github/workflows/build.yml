@@ -18,6 +18,7 @@ jobs:
     env:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
+      - run: TZ=UTC date -d"22022-09-30T02:51:05Z" +%s
       - uses: actions/checkout@v2
       - uses: mohan-13/versioning-action@main
         with:

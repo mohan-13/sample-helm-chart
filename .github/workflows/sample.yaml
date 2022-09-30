@@ -13,6 +13,12 @@ jobs:
     env:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
+      - run: |
+          podTime=$(TZ=UTC date -d"2022-09-30T04:52:30Z" +%s)
+          currentTime=$(TZ=UTC date +%s)
+          diff=$((currentTime-podTime))
+          echo $currentTime,$podTime,$diff
       - uses: actions/checkout@v2
       - run: echo $GITHUB_REF
+      
       

@@ -19,7 +19,7 @@ jobs:
       CLUSTER_NAME: bahmni-cluster-dev
     steps:
       - run: |
-          podTime=$(TZ=UTC date -d"22022-09-30T02:51:05Z" +%s)
+          podTime=$(TZ=UTC date -d"2022-09-30T02:51:05Z" +%s)
           currentTime=$(TZ=UTC date +%s)
           diff=$((currentTime-podTime))
           echo $currentTime,$podTime,$diff
